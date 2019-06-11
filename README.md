@@ -1,6 +1,6 @@
-# DevConnector
+# DevConnector.V2
 
-> Small social network app built with the MERN stack. This is part of my "MERN Stack Front To Back" Udemy course
+> Originally, this application was built by one of the greatest online instructor I have come across, Brad Traversy. After changing some visual portions and adding new features, it was renamed as DevConnector.V2. Application is intended to serve as social media platform for developers.
 
 ## Quick Start
 
