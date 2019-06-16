@@ -1,0 +1,6 @@
+{
+  "mongoURI": "mongodb+srv://Jinman:pass1234@mern-project-oqkzz.mongodb.net/test?retryWrites=true",
+  "jwtSecret": "secret",
+  "githubClientId": "",
+  "githubSecret": ""
+}
