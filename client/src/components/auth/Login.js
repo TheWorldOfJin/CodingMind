@@ -1,13 +1,13 @@
-import React, { Fragment, useState } from 'react';
-import { Link, Redirect } from 'react-router-dom';
-import { connect } from 'react-redux';
-import PropTypes from 'prop-types';
-import { login } from '../../actions/auth';
+import React, { Fragment, useState } from "react";
+import { Link, Redirect } from "react-router-dom";
+import { connect } from "react-redux";
+import PropTypes from "prop-types";
+import { login } from "../../actions/auth";
 
 const Login = ({ login, isAuthenticated }) => {
   const [formData, setFormData] = useState({
-    email: '',
-    password: ''
+    email: "",
+    password: ""
   });
 
   const { email, password } = formData;
@@ -21,40 +21,50 @@ const Login = ({ login, isAuthenticated }) => {
   };
 
   if (isAuthenticated) {
-    return <Redirect to='/dashboard' />;
+    return <Redirect to="/dashboard" />;
   }
 
   return (
     <Fragment>
-      <h1 className='large text-primary'>Sign In</h1>
-      <p className='lead'>
-        <i className='fas fa-user' /> Sign Into Your Account
+      <h1 className="large text-primary">Sign In</h1>
+      <p className="lead">
+        <i className="fas fa-user" /> Sign Into Your Account
       </p>
-      <form className='form' onSubmit={e => onSubmit(e)}>
-        <div className='form-group'>
+      <form className="form" onSubmit={e => onSubmit(e)}>
+        <div className="form-group">
           <input
-            type='email'
-            placeholder='Email Address'
-            name='email'
+            type="email"
+            placeholder="Email Address"
+            name="email"
             value={email}
             onChange={e => onChange(e)}
             required
           />
         </div>
-        <div className='form-group'>
+        <div className="form-group">
           <input
-            type='password'
-            placeholder='Password'
-            name='password'
+            type="password"
+            placeholder="Password"
+            name="password"
             value={password}
             onChange={e => onChange(e)}
-            minLength='6'
+            minLength="6"
           />
         </div>
-        <input type='submit' className='btn btn-primary' value='Login' />
+        <input
+          type="submit"
+          className="btn btn-primary"
+          value="Login with CodingMind Account"
+        />
       </form>
-      <p className='my-1'>
-        Don't have an account? <Link to='/register'>Sign Up</Link>
+      <a
+        href="https://github.com/login/oauth/authorize?client_id=8cd89e623355091382b0&redirect_uri=http://localhost:3000/dashboard"
+        className="btn btn-success my-1"
+      >
+        Login with GitHub Account
+      </a>
+      <p className="my-1">
+        Don't have an account? <Link to="/register">Sign Up</Link>
       </p>
     </Fragment>
   );
