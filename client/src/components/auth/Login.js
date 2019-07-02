@@ -57,12 +57,6 @@ const Login = ({ login, isAuthenticated }) => {
           value="Login with CodingMind Account"
         />
       </form>
-      <a
-        href="https://github.com/login/oauth/authorize?client_id=8cd89e623355091382b0&redirect_uri=http://localhost:3000/dashboard"
-        className="btn btn-success my-1"
-      >
-        Login with GitHub Account
-      </a>
       <p className="my-1">
         Don't have an account? <Link to="/register">Sign Up</Link>
       </p>

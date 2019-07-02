@@ -1,6 +1,5 @@
 const express = require("express");
 const router = express.Router();
-const axios = require("axios");
 const bcrypt = require("bcryptjs");
 const auth = require("../../middleware/auth");
 const jwt = require("jsonwebtoken");
@@ -8,9 +7,6 @@ const config = require("config");
 const { check, validationResult } = require("express-validator/check");
 
 const User = require("../../models/User");
-
-const clientID = "8cd89e623355091382b0";
-const clientSecret = "b3f1c6e72b733edf240bb42744109b6cd0ab79a5";
 
 // @route    GET api/auth
 // @desc     Test route
@@ -80,22 +76,5 @@ router.post(
     }
   }
 );
-
-// @route    POST api/auth/oauth
-// @desc     Authenticate user using OAuth & get token
-// @access   Public
-router.get("/oauth", (req, res) => {
-  const requestToken = req.query.code;
-  axios({
-    method: "post",
-    url: `https://github.com/login/oauth/access_token?client_id=${clientID}&client_secret=${clientSecret}&code=${requestToken}`,
-    headers: {
-      accept: "application/json"
-    }
-  }).then(response => {
-    const accessToken = response.data.access_token;
-    res.json(accessToken);
-  });
-});
 
 module.exports = router;
