@@ -4,8 +4,8 @@ const { check, validationResult } = require("express-validator/check");
 const auth = require("../../middleware/auth");
 
 const Post = require("../../models/Post");
+const Profile = require("../../models/Profile");
 const User = require("../../models/User");
-const Event = require("../../models/Event");
 
 // @route    POST api/posts
 // @desc     Create a post
@@ -15,7 +15,7 @@ router.post(
   [
     auth,
     [
-      check("title", "Title is required")
+      check("text", "Text is required")
         .not()
         .isEmpty()
     ]
@@ -29,15 +29,16 @@ router.post(
     try {
       const user = await User.findById(req.user.id).select("-password");
 
-      const newEvent = new Event({
-        title: req.body.title,
-        content: req.body.content,
-        location: req.body.location
+      const newPost = new Post({
+        text: req.body.text,
+        name: user.name,
+        avatar: user.avatar,
+        user: req.user.id
       });
 
-      const event = await newPost.save();
+      const post = await newPost.save();
 
-      res.json(event);
+      res.json(post);
     } catch (err) {
       console.error(err.message);
       res.status(500).send("Server Error");

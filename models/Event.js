@@ -18,11 +18,23 @@ const EventSchema = new Schema({
     type: String,
     required: true
   },
-  attendees: [
+  name: {
+    type: String
+  },
+  avatar: {
+    type: String
+  },
+  attend: [
     {
       user: {
         type: Schema.Types.ObjectId,
         ref: "users"
+      },
+      name: {
+        type: String
+      },
+      avatar: {
+        type: String
       }
     }
   ],

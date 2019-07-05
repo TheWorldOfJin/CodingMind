@@ -18,6 +18,16 @@ router.post(
       check("title", "title is required")
         .not()
         .isEmpty()
+    ],
+    [
+      check("content", "content is required")
+        .not()
+        .isEmpty()
+    ],
+    [
+      check("location", "location is required")
+        .not()
+        .isEmpty()
     ]
   ],
   async (req, res) => {
@@ -32,10 +42,15 @@ router.post(
       const newEvent = new Event({
         title: req.body.title,
         content: req.body.content,
-        location: req.body.location
+        location: req.body.location,
+        name: user.name,
+        avatar: user.avatar,
+        user: req.user.id
       });
 
       const event = await newEvent.save();
+
+      event.attend.unshift({ user: req.user.id });
 
       res.json(event);
     } catch (err) {
@@ -106,4 +121,62 @@ router.delete("/:id", auth, async (req, res) => {
     res.status(500).send("Server Error");
   }
 });
+
+// @route    PUT api/events/attend/:id
+// @desc     Attend an event
+// @access   Private
+router.put("/attend/:id", auth, async (req, res) => {
+  try {
+    const event = await Event.findById(req.params.id);
+
+    // Check if the event has already marked as attending
+    if (
+      event.attend.filter(attend => attend.user.toString() === req.user.id)
+        .length > 0
+    ) {
+      return res.status(400).json({ msg: "Already attending this event" });
+    }
+
+    event.attend.unshift({ user: req.user.id });
+
+    await event.save();
+
+    res.json(event.attend);
+  } catch (err) {
+    console.error(err.message);
+    res.status(500).send("Server Error");
+  }
+});
+
+// @route    PUT api/events/unattend/:id
+// @desc     Unattend an event
+// @access   Private
+router.put("/unattend/:id", auth, async (req, res) => {
+  try {
+    const event = await Event.findById(req.params.id);
+
+    // Check if the event has already marked as attending
+    if (
+      event.attend.filter(attend => attend.user.toString() === req.user.id)
+        .length === 0
+    ) {
+      return res.status(400).json({ msg: "Event already not attending" });
+    }
+
+    // Get remove index
+    const removeIndex = event.attend
+      .map(attend => attend.user.toString())
+      .indexOf(req.user.id);
+
+    event.attend.splice(removeIndex, 1);
+
+    await event.save();
+
+    res.json(event.attend);
+  } catch (err) {
+    console.error(err.message);
+    res.status(500).send("Server Error");
+  }
+});
+
 module.exports = router;
