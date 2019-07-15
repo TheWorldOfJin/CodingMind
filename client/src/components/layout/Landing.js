@@ -4,23 +4,12 @@ import { connect } from "react-redux";
 import PropTypes from "prop-types";
 
 const Landing = ({ isAuthenticated }) => {
-  if (isAuthenticated) {
-    return <Redirect to="/dashboard" />;
-  }
-
   return (
     <section className="landing">
       <div className="dark-overlay">
         <div className="landing-inner">
-          <p className="lead">THE GREAT DEVELOPER COMMUNITY</p>
-          <div className="buttons my-3">
-            <Link to="/register" className="btn btn-primary">
-              Sign Up
-            </Link>
-            <Link to="/login" className="btn btn-light">
-              Login
-            </Link>
-          </div>
+          {/* <p className="lead">THE GREAT DEVELOPER COMMUNITY</p> */}
+          <div className="buttons my-3" />
         </div>
       </div>
     </section>

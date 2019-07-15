@@ -43,14 +43,13 @@ router.post(
         title: req.body.title,
         content: req.body.content,
         location: req.body.location,
-        name: user.name,
         avatar: user.avatar,
         user: req.user.id
       });
 
-      const event = await newEvent.save();
+      newEvent.attend.unshift({ user: req.user.id });
 
-      event.attend.unshift({ user: req.user.id });
+      const event = await newEvent.save();
 
       res.json(event);
     } catch (err) {

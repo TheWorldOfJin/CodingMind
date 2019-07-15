@@ -1,6 +1,6 @@
 /* Global Styles */
 :root {
-  --primary-color: #17a2b8;
+  --primary-color: #222222;
   --dark-color: #343a40;
   --light-color: #f4f4f4;
   --danger-color: #dc3545;
@@ -226,7 +226,7 @@ img {
 
 /* Overlay */
 .dark-overlay {
-  background-color: rgba(0, 0, 0, 0.7);
+  background-color: rgba(71, 71, 71, 0.2);
   position: absolute;
   top: 0;
   left: 0;
@@ -309,7 +309,6 @@ button {
   z-index: 1;
   width: 100%;
   top: 0;
-  opacity: 0.9;
 }
 
 .navbar ul {
@@ -482,7 +481,7 @@ button {
   font-size: 0.8rem;
 }
 
-.post .post-date {
+.post-date {
   color: #aaa;
   font-size: 0.8rem;
   margin-bottom: 0.5rem;
