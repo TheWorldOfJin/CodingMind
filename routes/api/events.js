@@ -43,8 +43,9 @@ router.post(
         title: req.body.title,
         content: req.body.content,
         location: req.body.location,
+        user: req.user.id,
         avatar: user.avatar,
-        user: req.user.id
+        name: user.name
       });
 
       newEvent.attend.unshift({ user: req.user.id });

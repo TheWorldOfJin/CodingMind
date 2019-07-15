@@ -21,7 +21,8 @@ const EventItem = ({
         <div>
           <h4>{location}</h4>
           <h4>
-            Attending: <img className="round-img" src={attend.avatar} alt="" />{" "}
+            Attending:{" "}
+            <img className="round-img attendees mt-2" src={avatar} alt="" />{" "}
           </h4>
         </div>
         <p className="post-date">

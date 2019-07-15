@@ -26,12 +26,11 @@ const Event = ({
       <Link to="/events" className="btn">
         Back To Events
       </Link>
-      <div className="post bg-white p-1 my-1">
-        <Link to={`/profile/${event.user}`}>
-          <img className="round-img" src={event.avatar} alt="" />
-          <h4>{event.name}</h4>
-        </Link>
-        <h1 className="my-1">{event.title}</h1>
+      <h1 className="my-1">{event.title}</h1>
+      <div className="event-header">
+        <p>
+          Hosted by: <Link to={`/profile/${event.user}`}>{event.name}</Link>
+        </p>
       </div>
       <div>{event.content}</div>
     </Fragment>
