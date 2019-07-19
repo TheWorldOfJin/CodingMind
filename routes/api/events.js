@@ -28,6 +28,11 @@ router.post(
       check("location", "location is required")
         .not()
         .isEmpty()
+    ],
+    [
+      check("date", "date is required")
+        .not()
+        .isEmpty()
     ]
   ],
   async (req, res) => {
@@ -43,12 +48,17 @@ router.post(
         title: req.body.title,
         content: req.body.content,
         location: req.body.location,
+        date: req.body.date,
         user: req.user.id,
         avatar: user.avatar,
         name: user.name
       });
 
-      newEvent.attend.unshift({ user: req.user.id });
+      newEvent.attend.unshift({
+        user: req.user.id,
+        name: user.name,
+        avatar: user.avatar
+      });
 
       const event = await newEvent.save();
 
@@ -127,6 +137,7 @@ router.delete("/:id", auth, async (req, res) => {
 // @access   Private
 router.put("/attend/:id", auth, async (req, res) => {
   try {
+    const user = await User.findById(req.user.id).select("-password");
     const event = await Event.findById(req.params.id);
 
     // Check if the event has already marked as attending
@@ -137,7 +148,13 @@ router.put("/attend/:id", auth, async (req, res) => {
       return res.status(400).json({ msg: "Already attending this event" });
     }
 
-    event.attend.unshift({ user: req.user.id });
+    const newAttend = {
+      user: req.user.id,
+      name: user.name,
+      avatar: user.avatar
+    };
+
+    event.attend.unshift(newAttend);
 
     await event.save();
 

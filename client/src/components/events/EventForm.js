@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import PropTypes from "prop-types";
+import { Redirect } from "react-router-dom";
 import { connect } from "react-redux";
 import { addEvent } from "../../actions/event";
 
@@ -7,19 +8,21 @@ const EventForm = ({ addEvent }) => {
   const [formData, setFormData] = useState({
     title: "",
     location: "",
-    content: ""
+    content: "",
+    date: ""
   });
 
-  const { title, location, content } = formData;
+  const { title, location, content, date } = formData;
 
   const onChange = e =>
     setFormData({ ...formData, [e.target.name]: e.target.value });
 
   return (
     <div className="post-form">
-      <div className="bg-primary p">
-        <h3>Say Something...</h3>
-      </div>
+      <h1 className="large text-primary">Event</h1>
+      <p className="lead">
+        <i className="fas fa-user" /> Host your event
+      </p>
       <form
         className="form my-1"
         onSubmit={e => {
@@ -28,6 +31,7 @@ const EventForm = ({ addEvent }) => {
           setFormData("");
         }}
       >
+        <h4 className="form-header">Title</h4>
         <textarea
           name="title"
           cols="30"
@@ -37,6 +41,7 @@ const EventForm = ({ addEvent }) => {
           onChange={e => onChange(e)}
           required
         />
+        <h4 className="form-header">Where</h4>
         <textarea
           name="location"
           cols="30"
@@ -46,6 +51,7 @@ const EventForm = ({ addEvent }) => {
           onChange={e => onChange(e)}
           required
         />
+        <h4 className="form-header">Event Detail</h4>
         <textarea
           name="content"
           cols="30"
@@ -54,6 +60,13 @@ const EventForm = ({ addEvent }) => {
           value={content}
           onChange={e => onChange(e)}
           required
+        />
+        <h4 className="form-header">Happening On</h4>
+        <input
+          type="date"
+          name="date"
+          value={date}
+          onChange={e => onChange(e)}
         />
         <input type="submit" className="btn btn-dark my-1" value="Submit" />
       </form>

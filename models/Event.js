@@ -18,12 +18,17 @@ const EventSchema = new Schema({
     type: String,
     required: true
   },
+  date: {
+    type: Date,
+    required: true
+  },
   name: {
     type: String
   },
   avatar: {
     type: String
   },
+
   attend: [
     {
       user: {
@@ -37,11 +42,7 @@ const EventSchema = new Schema({
         type: String
       }
     }
-  ],
-  date: {
-    type: Date,
-    default: Date.now
-  }
+  ]
 });
 
 module.exports = Event = mongoose.model("event", EventSchema);

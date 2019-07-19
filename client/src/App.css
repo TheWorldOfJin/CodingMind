@@ -126,9 +126,17 @@ img {
   margin: 3rem 0;
 }
 
+.mb-1 {
+  margin-bottom: 1rem;
+}
+
 .mt-2 {
   margin-top: 2rem;
   margin-left: 0.5rem;
+}
+
+.mt-1 {
+  margin: 0 3px;
 }
 
 .btn {
@@ -207,7 +215,13 @@ img {
 .alert-white {
   background: #fff;
   color: #333;
-  border: #ccc solid 1px;
+  border: #ccc solid 1.5px;
+  border-radius: 8px;
+}
+
+.btn-attend {
+  border-radius: 5px;
+  margin-top: 10px;
 }
 
 .btn:hover {
@@ -226,6 +240,8 @@ img {
 .attendees {
   width: 20px;
   height: 20px;
+  display: flex;
+  margin: 1rem 0;
 }
 
 .host {
@@ -241,7 +257,7 @@ img {
 
 /* Overlay */
 .dark-overlay {
-  background-color: rgba(71, 71, 71, 0.5);
+  background-color: rgba(71, 71, 71, 0.3);
   position: absolute;
   top: 0;
   left: 0;
@@ -301,6 +317,10 @@ button {
 }
 .form .social-input i.fa-linkedin {
   color: #0077b5;
+}
+
+.form-header {
+  margin: 8px 0;
 }
 
 .table th,
@@ -467,6 +487,18 @@ button {
   flex-basis: 20%;
 }
 
+.members .member {
+  display: inline-block;
+  width: 120px;
+  margin-right: 3rem;
+  margin-top: 2rem;
+  vertical-align: text-top;
+}
+
+.member h4 {
+  text-align: center;
+}
+
 /* Posts Page */
 .post-form .post-form-header {
   background: var(--primary-color);
@@ -502,8 +534,69 @@ button {
   margin-bottom: 0.5rem;
 }
 
+.post-text {
+  white-space: pre-line;
+}
+
+/* Event page */
+.event-header-border {
+  margin-top: 1rem;
+  border-top: 2px solid #888;
+  border-bottom: 2px solid #888;
+}
 .event-header {
+  display: flex;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+}
+
+.flex-left {
+  width: 60%;
+}
+
+.flex-left .header-title {
+  font-weight: bold;
+  font-size: 2rem;
+}
+
+.flex-left .host {
+  color: #38a1f3;
+}
+
+.flex-right {
+  margin-left: 2rem;
+}
+
+.event-content {
+  margin-top: 4rem;
+}
+
+.content-body {
+  white-space: pre-line;
+}
+
+.attendee-header {
+  margin-top: 2rem;
+  margin-bottom: 1rem;
+}
+
+.attendee {
+  width: 4rem;
+  height: 4rem;
+  display: flex;
+}
+
+.attendee .avatar {
+  margin-right: 2rem;
+}
+
+.attendee-name .name {
   display: inline-block;
+  width: 4rem;
+  margin-top: 5px;
+  margin-right: 2rem;
+  text-align: center;
+  font-weight: 600;
 }
 
 /* Mobile Styles */

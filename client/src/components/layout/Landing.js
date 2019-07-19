@@ -8,7 +8,7 @@ const Landing = ({ isAuthenticated }) => {
     <section className="landing">
       <div className="dark-overlay">
         <div className="landing-inner">
-          {/* <p className="lead">THE GREAT DEVELOPER COMMUNITY</p> */}
+          {/* <p className="lead">Collection Of Growth Mindset</p> */}
           <div className="buttons my-3" />
         </div>
       </div>

@@ -1,5 +1,6 @@
 import React, { Fragment, useEffect } from "react";
 import PropTypes from "prop-types";
+import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import Spinner from "../layout/Spinner";
 import EventItem from "./EventItem";
@@ -15,11 +16,13 @@ const Events = ({ getEvents, event: { events, loading } }) => {
     <Spinner />
   ) : (
     <Fragment>
-      <h1 className="large text-primary">Events</h1>
+      <h1 className="large text-primary">Event</h1>
       <p className="lead">
-        <i className="fas fa-user" /> Welcome to the community
+        <i className="fas fa-user" /> Find the social events
       </p>
-      <EventForm />
+      <Link to="/events/add-event" className="btn btn-dark my-1">
+        Create Event
+      </Link>
       <div className="events">
         {events.map(event => (
           <EventItem key={event._id} event={event} />

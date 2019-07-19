@@ -14,6 +14,7 @@ import Posts from "../posts/Posts";
 import Post from "../post/Post";
 import Events from "../events/Events";
 import Event from "../events/Event";
+import EventForm from "../events/EventForm";
 import NotFound from "../layout/NotFound";
 import PrivateRoute from "../routing/PrivateRoute";
 
@@ -34,6 +35,7 @@ const Routes = () => {
         <PrivateRoute exact path="/posts" component={Posts} />
         <PrivateRoute exact path="/posts/:id" component={Post} />
         <PrivateRoute exact path="/events" component={Events} />
+        <PrivateRoute exact path="/events/add-event" component={EventForm} />
         <PrivateRoute exact path="/events/:id" component={Event} />
         <Route component={NotFound} />
       </Switch>

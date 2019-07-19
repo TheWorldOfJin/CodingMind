@@ -1,32 +1,28 @@
-import React, { Fragment } from "react";
+import React from "react";
 import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 import Moment from "react-moment";
 import { connect } from "react-redux";
-import {
-  addAttend,
-  removeAttend,
-  addEvent,
-  deleteEvent
-} from "../../actions/event";
+import { addAttend, removeAttend } from "../../actions/event";
 
 const EventItem = ({
-  event: { _id, user, title, location, content, name, avatar, attend, date },
-  showActions
+  event: { _id, title, location, avatar, attend, date }
 }) => (
-  <div className="bg-white p-1 my-1">
+  <div className="bg-white p-1 my-1 event-card">
     <Link to={`/events/${_id}`}>
       <div>
         <h1>{title}</h1>
-        <div>
+        <div className="event-subheading">
           <h4>{location}</h4>
-          <h4>
-            Attending:{" "}
-            <img className="round-img attendees mt-2" src={avatar} alt="" />{" "}
+          <h4 className="attendees">
+            Attending:&nbsp;
+            {attend.map(attendee => (
+              <img src={attendee.avatar} alt="" className="round-img mt-1" />
+            ))}
           </h4>
         </div>
         <p className="post-date">
-          Posted on <Moment format="YYYY/MM/DD">{date}</Moment>
+          Happening on: <Moment format="YYYY/MM/DD">{date}</Moment>
         </p>
       </div>
     </Link>
@@ -41,10 +37,7 @@ EventItem.propTypes = {
   event: PropTypes.object.isRequired,
   auth: PropTypes.object.isRequired,
   addAttend: PropTypes.func.isRequired,
-  removeAttend: PropTypes.func.isRequired,
-  addEvent: PropTypes.func.isRequired,
-  deleteEvent: PropTypes.func.isRequired,
-  showActions: PropTypes.bool
+  removeAttend: PropTypes.func.isRequired
 };
 
 const mapStateToProps = state => ({
@@ -53,5 +46,5 @@ const mapStateToProps = state => ({
 
 export default connect(
   mapStateToProps,
-  { addAttend, removeAttend, addEvent, deleteEvent }
+  { addAttend, removeAttend }
 )(EventItem);
